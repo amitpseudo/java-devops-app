@@ -8,7 +8,7 @@ on:
     branches: [ main ]
 
 jobs:
-  build-and-test:
+  build-test-docker:
 
     runs-on: ubuntu-latest
 
@@ -24,5 +24,11 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
-      - name: Build and test
-        run: mvn test
+      - name: Run tests
+        run: mvn clean test
+
+      - name: Build application
+        run: mvn package -DskipTests
+
+      - name: Build Docker image
+        run: docker build -t java-devops-app:${{ github.sha }} .
