@@ -10,4 +10,4 @@ public class appTest {
     void testAddition() {
         assertEquals(5, app.add(2, 3));
     }
-}
+ }
